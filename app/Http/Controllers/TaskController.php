@@ -21,9 +21,14 @@ class TaskController extends Controller
         $this->middleware('auth', ['except' => ['index']]);
     }
 
+    /**
+     * Display a listing of the tasks.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $tasks = Task::paginate(5);
+        $tasks = Task::latest()->paginate(5);
 
         return view('welcome', compact('tasks'));
     }
@@ -41,13 +46,26 @@ class TaskController extends Controller
         return view('task.edit', compact('task'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(TaskRequest $request)
     {  
-        Task::create($request->all());
-        
-        return redirect('home')->with('success', 'Новая задача была успешно добавлена!');
+        $task = Task::create($request->all());
+        if($task){
+            return response()->json([
+                'success' => true
+            ]);
+        }
+        return response()->json([
+            'success' => false
+        ]);
+
     }
 
+    /**
+     * Update resource in storage.
+     */
     public function update(Request $request)
     {
         if(!$request->ajax()){
@@ -75,7 +93,7 @@ class TaskController extends Controller
                     'success' => true
                 ]);
             }
-            return redirect('home')->with('success', 'Задача была успешно Обновлена!');
+            return redirect('home')->with('success', 'Задача была успешно обновлена!');
         }
         if($request->ajax()){
             return response()->json([
@@ -84,6 +102,9 @@ class TaskController extends Controller
         }
     }
 
+    /**
+     * Delete resource in storage.
+     */
     public function destroy($id)
     {
         $task = Task::findOrFail((int)$id);

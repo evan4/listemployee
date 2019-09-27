@@ -5,27 +5,18 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif You are logged in!
-                </div>
-
             </div>
         </div>
 
     </div>
     <div class="alert alert-success alert-dismissible d-none" role="alert">
-        <p class="result"></p>
+        <strong class="result"></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="alert alert-danger alert-dismissible d-none"  role="alert">
-        <p>Произошла ошибка. Попробуйте еще раз</p>
+        <strong>Произошла ошибка. Попробуйте еще раз</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -100,7 +91,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="message">Текст</label>
-                                <textarea name="message" id="message" class="form-control" id="message" cols="3" rows="1"></textarea>
+                                <textarea name="message" id="message" class="form-control" 
+                                id="message" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Создать</button>
                         </form>

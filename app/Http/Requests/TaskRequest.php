@@ -25,8 +25,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'message' => 'required',
-            'status' => 'required|numeric',
+            'message' => 'required'
         ];
     }
 }

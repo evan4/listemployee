@@ -10737,7 +10737,7 @@ $('.status').on('change', function () {
       console.log(res);
 
       if (res.success) {
-        $('.alert-success').removeClass('d-none').find('p').text('Статус задачи обновлен');
+        $('.alert-success').removeClass('d-none').find('strong').text('Статус задачи обновлен');
       } else {
         showDangerAlert();
       }
@@ -10752,6 +10752,28 @@ $('.status').on('change', function () {
 $('.newtask').on('submit', function (e) {
   e.preventDefault();
   var fValid = true;
+  fValid = fValid && Object(_checkForm__WEBPACK_IMPORTED_MODULE_0__["minLenght"])($('#title'), 2, require);
+  fValid = fValid && Object(_checkForm__WEBPACK_IMPORTED_MODULE_0__["minLenght"])($('#message'), 2, require); // Если все поля удовлетворяют условиям проверки, тогда отправить данные
+
+  if (fValid) {
+    $.ajax({
+      url: '/admin/task-store',
+      data: $(this).serializeArray(),
+      beforeSend: function beforeSend() {
+        $(this).find('button').prop("disabled", true);
+      }
+    }).done(function (res) {
+      console.log(res);
+
+      if (res.success) {
+        window.location.replace("/home");
+      } else {
+        showDangerAlert();
+      }
+    }).fail(function () {
+      showDangerAlert();
+    });
+  }
 }); // удаление задачи
 
 $('.task-delete').on('click', function (e) {
@@ -10772,7 +10794,7 @@ $('.task-delete').on('click', function (e) {
       console.log(res);
 
       if (res.success) {
-        $('.alert-success').removeClass('d-none').find('p').text('Задача удалена');
+        $('.alert-success').removeClass('d-none').find('strong').text('Задача удалена');
         $("#task-".concat(res.id)).closest('tr').remove();
       } else {
         showDangerAlert();
@@ -10811,7 +10833,7 @@ var errorField = function errorField(o, tooltip) {
   position = o.position();
 
   if ($(o).next(".control-tooltip").length === 0) {
-    $("<span class='control-tooltip text-danfer'>" + tooltip + "</span>").insertAfter(o);
+    $("<span class='control-tooltip text-danger'>" + tooltip + "</span>").insertAfter(o);
     $(o).addClass('errors');
   }
 
