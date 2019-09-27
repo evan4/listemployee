@@ -65,7 +65,7 @@
                             </select>
                         </td>
                         <td class="text-center">
-                            <a href="/admin/task/edit/{{$task->id}}">
+                            <a href="/admin/task-edit/{{$task->id}}">
                                 <i class="fas fa-eye-dropper"></i>
                             </a>
                         </td>

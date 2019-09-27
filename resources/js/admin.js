@@ -12,7 +12,7 @@ $.ajaxSetup({
 });
 
 // изменение статуса задачи
-$('.select').on('change', function(){
+$('.status').on('change', function(){
   const id = +$(this).attr('id').split('-')[1];
   const status = $(this).find(":selected").val();
   

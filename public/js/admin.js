@@ -10716,7 +10716,7 @@ $.ajaxSetup({
   type: "POST"
 }); // изменение статуса задачи
 
-$('.select').on('change', function () {
+$('.status').on('change', function () {
   var _this = this;
 
   var id = +$(this).attr('id').split('-')[1];
@@ -10811,7 +10811,7 @@ var errorField = function errorField(o, tooltip) {
   position = o.position();
 
   if ($(o).next(".control-tooltip").length === 0) {
-    $("<span class='control-tooltip'>" + tooltip + "</span>").insertAfter(o);
+    $("<span class='control-tooltip text-danfer'>" + tooltip + "</span>").insertAfter(o);
     $(o).addClass('errors');
   }
 

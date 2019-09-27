@@ -2,7 +2,7 @@ const errorField = (o, tooltip) => {
   var position;
   position = o.position();
   if ($(o).next(".control-tooltip").length === 0) {
-    $("<span class='control-tooltip'>" + tooltip + "</span>").insertAfter(o);
+    $("<span class='control-tooltip text-danfer'>" + tooltip + "</span>").insertAfter(o);
     $(o).addClass('errors');
   }
   return false;
