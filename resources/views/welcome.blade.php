@@ -77,24 +77,32 @@
         @endif
 
         <div class="container">
-            <h1>Список задач</h1>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Заголовок</th>
-                        <th scope="col">Задача</th>
-                        <th scope="col">Статус</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                </tbody>
-            </table>
-
+            <div class="row">
+                <h1 class="mt-5">Список задач</h1>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width:20%">Заголовок</th>
+                                <th style="width:70%">Задача</th>
+                                <th style="width:10%">Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($tasks as $task)
+                            <tr>
+                                <td style="width:20%">{{$task->title}}</td>
+                                <td style="width:70%">{{$task->message}}</td>
+                                <td style="width:10%">
+                                    @if($task->status) {{$task->status}} @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{$tasks->links()}}
+                </div>
+            </div>
         </div>
     </div>
 </body>
