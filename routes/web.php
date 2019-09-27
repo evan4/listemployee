@@ -16,3 +16,11 @@ Route::get('/', 'TaskController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(array('prefix' => 'admin'), function(){
+
+    Route::post('/task-store', 'TaskController@store');
+    Route::put('/task-update', 'TaskController@update');
+    Route::delete('/task-delete/{id}', 'TaskController@destroy');
+
+});

@@ -93,8 +93,12 @@
                             <tr>
                                 <td style="width:20%">{{$task->title}}</td>
                                 <td style="width:70%">{{$task->message}}</td>
-                                <td style="width:10%">
-                                    @if($task->status) {{$task->status}} @endif
+                                <td style="width:10%" class="text-center">
+                                    @if($task->status)
+                                    <i class="fas fa-check text-success" title="Завершено"></i>
+                                    @else
+                                    <i class="fas fa-tasks" title="В работе"></i>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
